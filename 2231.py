@@ -66,14 +66,14 @@ while True:
     for i in range(nm[0] - (nm[1] - 1)):
 
         # Variável de média da temperatura.
-        mT = 0
+        mT = 0.0
 
         # Loop que processa cada elemento da média.
         for j in range(nm[1]):
 
             # a média neste caso é dada pela reformulação da fórmula da média. Exemplo: (a + b) / 2 = a / 2 + b / 2. 
             # Então os valores são calculados individualmente e somados a variável da média.
-            mT += tLst[j + i] / nm[1]
+            mT += tLst[j + i] / float(nm[1])
 
         # Compara a média com a maior média registrada.
         if mT > tMMax:
