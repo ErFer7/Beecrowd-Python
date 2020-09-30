@@ -86,8 +86,10 @@ while True:
 
             # Substitui a menor média registrada caso a nova média seja menor.
             tMMin = mT
-    
+
     # Escreve no console "Teste n".
     print("Teste {0}".format(count))
     # Escreve no console a menor e maior média truncada. (Neste caso convertida para int).
-    print("{0} {1}\n".format(int(tMMin), int(tMMax)))
+    # Detalhe, os valores são arredondados na 12° casa decimal por causa dos erros de precisão que estavam
+    # causando problemas na avaliação do URI.
+    print("{0} {1}\n".format(int(round(tMMin, 12)), int(round(tMMax, 12))))
