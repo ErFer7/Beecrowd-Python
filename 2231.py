@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# NOTA: Não pensei em uma implementação que não usasse vetores. Porém tenteni minimizar o seu uso para se manter
-# no conteúdo.
+# NOTA: Não pensei em uma implementação que não usasse vetores.
 
 # O código funciona da seguinte maneira: O problema pede que seja exibida uma linha com a palavra "Teste" e o
 # número do teste, neste caso foi usada a variável count para contar os testes, em toda iteração do loop while
@@ -19,15 +18,17 @@
 # o intervalo fosse 4 o item máximo a ser atingido seria o quarto item. Com isso percebe-se o padrão 
 # (Quantidade de iterações do loop = comprimento da lista - (intervalo - 1)).
 
-# A próxima etapa é calcular a média dado os valores no intervalo do loop. Para isso existe um loop menor na linha
-# 48 que faz a operação de calculo da média. O índice inserido na lista é a soma de j e i, o motivo disso é que a
-# cada cálculo da média o i é incrementado, assim os valores do próximo intervalo são acessados.
+# A próxima etapa é calcular a média dado os valores e intervalo. Com a lista das temperaturas é possível
+# implementar a média móvel. O intervalo que será somado pode ser extraido da lista com o corte da mesma
+# Desta maneira é possível cortar a lista a partir do início do intervalo até o final. O início do intervalo será
+# o índice i do loop, já que a cada iteração o i será incrementado em 1 aumentando o início do intervalo. O final
+# do intervalo é dado por (intervalo + 1) porque o final do corte não é inclusivo o +1 considera o último elemento.
+# Assim que os valores do intervalo é obtido é feito o somatório e a divisão pelo próprio intervalo, obtendo-se
+# a média que é adicionada diretamente a lista de médias que será processada depois.
 
-# Por fim a comparação é feita com a média em relação aos registros de maior e menor média. Os valores da maior média
-# e menor média (tMMax e tMMin) são declarados com valores que serão obrigatoriamente substituidos na primeira
-# comparação.
+# Por fim a maior e menor média são calculadas com as funções min() e max() na lista de médias.
 
-# Depois de realizado o processamento os valores são exibidos.
+# Depois de realizado o processamento os valores são exibidos com suas devidas correções.
 
 # Variável para a contagem.
 count = 0
@@ -41,55 +42,40 @@ while True:
     # Vetor (lista) que irá conter as temperaturas.
     tLst = []
 
-    # Variáveis para as médias mínimas e máximas, declaradas com valores que serão substituidos na primeira comparação
-    tMMin = 250.0
-    tMMax = -250.0
-
-    # Input de n e m. O input é separado em um vetor de 2 elementos, esse vetor é mapeado com a função map()
-    # aplicando a função int() nos 2 elementos, depois o mapa é convertido em uma lista.
-    nm = list(map(int, input().split()))
+    # Input de n e m. O input é separado em um vetor de 2 elementos e depois mapeado e convertido para int.
+    n, m = map(int, input().split())
 
     # Condição de saída, quebra o loop caso n e m sejam 0.
-    if nm[0] == 0 and nm[1] == 0:
+    if n == 0 and m == 0:
         break
 
     # Loop que processa cada input de temperatura.
-    for i in range(nm[0]):
+    for i in range(n):
 
-        # Armazena o input de uma temperatura como float.
-        t = float(input())
+        # Armazena o input de uma temperatura.
+        t = input()
 
         # Adiciona a temperatura na lista.
         tLst.append(t)
-    
+
+    # Converte todas as temperaturas para float.
+    tLst = list(map(float, tLst))
+
+    # Lista de médias
+    mTLst = []
+
+    # Intervalo convertido para float.
+    inter = float(m)
+
     # Loop que processa cada média.
-    for i in range(nm[0] - (nm[1] - 1)):
+    for i in range(n - (m - 1)):
 
-        # Variável de média da temperatura.
-        mT = 0.0
-
-        # Loop que processa cada elemento da média.
-        for j in range(nm[1]):
-
-            # a média neste caso é dada pela reformulação da fórmula da média. Exemplo: (a + b) / 2 = a / 2 + b / 2. 
-            # Então os valores são calculados individualmente e somados a variável da média.
-            mT += tLst[j + i] / float(nm[1])
-
-        # Compara a média com a maior média registrada.
-        if mT > tMMax:
-
-            # Substitui a maior média registrada caso a nova média seja maior.
-            tMMax = mT
-        
-        # Compara a média com a menor média registrada.
-        if mT < tMMin:
-
-            # Substitui a menor média registrada caso a nova média seja menor.
-            tMMin = mT
+        # Adiciona a média na lista como explicado no comentário principal.
+        mTLst.append(sum(tLst[i: m + i]) / inter)
 
     # Escreve no console "Teste n".
     print("Teste {0}".format(count))
     # Escreve no console a menor e maior média truncada. (Neste caso convertida para int).
     # Detalhe, os valores são arredondados na 12° casa decimal por causa dos erros de precisão que estavam
     # causando problemas na avaliação do URI.
-    print("{0} {1}\n".format(int(round(tMMin, 12)), int(round(tMMax, 12))))
+    print("{0} {1}\n".format(int(round(min(mTLst), 12)), int(round(max(mTLst), 12))))
