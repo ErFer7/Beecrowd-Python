@@ -28,6 +28,9 @@
 
 # Por fim a maior e menor média são calculadas com as funções min() e max() na lista de médias.
 
+# Detalhe: para intervalos 1 a média é o próprio elemento em si, então não é necessário fazer cálculo da média
+# móvel.
+
 # Depois de realizado o processamento os valores são exibidos com suas devidas correções.
 
 # Variável para a contagem.
@@ -67,15 +70,32 @@ while True:
     # Intervalo convertido para float.
     inter = float(m)
 
-    # Loop que processa cada média.
-    for i in range(n - (m - 1)):
+    # Variáveis da média mínima e máxima.
+    mTMin = 0
+    mTMax = 0
 
-        # Adiciona a média na lista como explicado no comentário principal.
-        mTLst.append(sum(tLst[i: m + i]) / inter)
+    # Se o intervalo é 1 a média é o próprio elemento, então as médias máximas e mínimas serão os elementos máximos
+    # e mínimos. Caso contrário o calculo é realizado no bloco abaixo.
+    if m != 1:
+
+        # Loop que processa cada média.
+        for i in range(n - (m - 1)):
+
+            # Adiciona a média na lista como explicado no comentário principal.
+            mTLst.append(sum(tLst[i: m + i]) / inter)
+        
+        # Obtem a média mínima e máxima.
+        mTMin = min(mTLst)
+        mTMax = max(mTLst)
+    else:
+
+        # Define a média mínima e máxima como a temperatura mínima e máxima.
+        mTMin = min(tLst)
+        mTMax = max(tLst)
 
     # Escreve no console "Teste n".
     print("Teste {0}".format(count))
     # Escreve no console a menor e maior média truncada. (Neste caso convertida para int).
     # Detalhe, os valores são arredondados na 12° casa decimal por causa dos erros de precisão que estavam
     # causando problemas na avaliação do URI.
-    print("{0} {1}\n".format(int(round(min(mTLst), 12)), int(round(max(mTLst), 12))))
+    print("{0} {1}\n".format(int(round(mTMin, 12)), int(round(mTMax, 12))))
