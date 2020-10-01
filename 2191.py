@@ -54,7 +54,7 @@ while True:
         s += x - y
 
         # Caso o saldo seja positivo.
-        if s > 0:
+        if s >= 0:
 
             # Caso seja o início de um período.
             if i == 0:
