@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-nStr = input().split()
-nMap = map(int, nStr)
-nLst = list(nMap)
+a, b = map(int, input().split())
 
-if nLst[0] % nLst[1] == 0 or nLst[1] % nLst[0] == 0:
+if a % b == 0 or b % a == 0:
 
     print("Sao Multiplos")
 else:

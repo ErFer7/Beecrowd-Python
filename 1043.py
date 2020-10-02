@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
-nStr = input().split()
-nMap = map(float, nStr)
-nLst = list(nMap)
+a, b, c = map(float, input().split())
 
-if nLst[0] + nLst[1] > nLst[2] and nLst[0] + nLst[2] > nLst[1] and nLst[1] + nLst[2] > nLst[0]:
+if a + b > c and a + c > b and b + c > a:
 
-    print("Perimetro = %.1f" % sum(nLst))
+    print("Perimetro = %.1f" % (a + b + c))
 else:
 
-    print("Area = %.1f" % (((nLst[0] + nLst[1]) * nLst[2]) / 2.0))
+    print("Area = %.1f" % (((a + b) * c) / 2.0))

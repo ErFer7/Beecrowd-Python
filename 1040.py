@@ -2,11 +2,9 @@
 
 wLst = [2.0, 3.0, 4.0, 1.0]
 
-gStr = input().split()
-gMap = map(float, gStr)
-gLst = list(gMap)
+a, b, c, d = map(float, input().split())
 
-average = round((gLst[0] * wLst[0] + gLst[1] * wLst[1] + gLst[2] * wLst[2] + gLst[3] * wLst[3]) / sum(wLst), 1)
+average = round((a * wLst[0] + b * wLst[1] + c * wLst[2] + d * wLst[3]) / sum(wLst), 1)
 
 print("Media: %.1f" % average)
 
