@@ -4,13 +4,13 @@ while True:
 
     d, n = map(str, input().split())
 
-    if d == '0' and n == '0':
+    if d == "0" and n == "0":
         break
 
-    vStr = n.replace(d, '')
+    vStr = n.replace(d, "")
 
-    if vStr == '':
+    if vStr == "":
 
-        vStr = '0'
+        vStr = "0"
     
     print(int(vStr))
