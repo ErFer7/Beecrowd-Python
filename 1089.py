@@ -8,11 +8,7 @@ while True:
     if nS == 0:
         break
 
-    nStr = input().split()
-    nMap = map(int, nStr)
-    nLst = list(nMap)
-
-    cNLst = nLst[:nS]
+    cNLst = list(map(int, input().split()))[:nS]
 
     for i in range(nS):
 

@@ -13,9 +13,7 @@ while True:
         marked = -1
         valid = False
 
-        nStr = input().split()
-        nMap = map(int, nStr)
-        nLst = list(nMap)
+        nLst = list(map(int, input().split()))
 
         for i in nLst:
 

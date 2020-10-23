@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 
 n = int(input())
-nStr = input().split()
-nMap = map(int, nStr)
-nLst = list(nMap)
 
-nCLst = nLst[:n]
+nCLst = list(map(int, input().split()))[:n]
 
 print("Menor valor: %d" % min(nCLst))
 print("Posicao: %d" % nCLst.index(min(nCLst)))
