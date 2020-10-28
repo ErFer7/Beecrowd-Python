@@ -117,34 +117,46 @@ for _ in range(n):
         c1, c2 = 0, 0
 
         # Loop para a checagem
-        for i in range(len(cList)):
+        for c in cList:
 
-            if cList.count(cList[i]) == 2:
+            # Caso a contagem da carta é 2
+            if cList.count(c) == 2:
 
+                # Caso este seja o primeiro par
                 if p == 0:
                     
-                    c1 = cList[i]
+                    # Coloca o valor da carta no valor do primeiro par
+                    c1 = c
+
+                    # Incrementa a contagem de pares
                     p += 1
-                elif cList[i] != c1 and cList[i] != c2:
+                # Caso o valor seja de um par de cartas e este valor já não foi colocado nas variáveis c1 e c2
+                elif c != c1 and c != c2:
 
-                    c2 = cList[i]
+                    # Coloca o valor da carta no valor do segundo par
+                    c2 = c
+
+                    # Incrementa a contagem de pares
                     p += 1
-        
-            if i == len(cList) - 1:
 
-                # Condição de dois pares
-                if p == 2:
+        # Condição de dois pares
+        if p == 2:
 
-                    if c1 > c2:
+            # Checa qual é o maior par e calcula a pontuação
+            if c1 > c2:
 
-                        res = 3 * c1 + 2 * c2 + 20
-                    else:
+                res = 3 * c1 + 2 * c2 + 20
+            else:
 
-                        res = 3 * c2 + 2 * c1 + 20
-                # Condição de um par
-                elif p == 1:
+                res = 3 * c2 + 2 * c1 + 20
+        # Condição de apenas um par
+        elif p == 1:
 
-                    res = c1
+            # Calcula a pontuação de apenas um par
+            res = c1 
     
+    # Incrementa a contagem de testes
     count += 1
+
+    # Exibe o resultado
     print("Teste {0}\n{1}\n".format(count, res))
