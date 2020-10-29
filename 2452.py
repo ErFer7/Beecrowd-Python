@@ -12,21 +12,27 @@ from math import ceil
 # Para os casos em que há mais de um ponto as distâncias serão entre o início da fita, entre pontos e até o fim
 # da fita.
 
-# Quando a distância máxima é de um ponto até uma ponta da fita o número de dias será a própria distância, já que 7
-# a cada dia um ponto é preenchido.
+# O tempo demorado para preencher uma distância entre um ponto e uma ponta da fita será a própria distância, neste
+# caso se a distância é 10 vão demorar 10 dias para preencher esta seção da fita.
 
-# Quando a distância máxima é de um ponto até outro ponto o número de dias será a metade da distância, porque cada
-# ponto irá se expandir a cada dia, então com a expanção dos dois a distância entre os espaços preenchidos se reduz
-# 2x por dia.
+# Quando a distância é de um ponto até outro o número de dias para preencher esta seção será a metade da distância,
+# porque cada ponto irá se expandir a cada dia, então com a expanção dos dois a distância entre os espaços preenchidos
+# se reduz 2x por dia.
 
 # Para resolver o problema é utilizada uma lista que contêm as distâncias, o primeiro e último elemento correspondem
 # as distâncias do íncio a um ponto e do fim a um ponto respectivamente. Todas as outras distâncias são entre pontos.
+
+# Com todas as distâncias computadas é calculado o tempo para preencher cada uma, o maior tempo de todos será o número
+# de dias que irá demorar para preencher a fita.
 
 # Variável para o resultado
 res = 0
 
 # Lista para as distâncias
-d = []
+dL = []
+
+# Lista para os tempos
+t = []
 
 # Input do tamanho da fita e a quantidade de pontos
 f, r = map(int, input().split())
@@ -38,10 +44,10 @@ rL = list(map(int, input().split()))
 if r == 1:
 
     # Calcula a distância entre o início da fita e o ponto, depois registra na lista
-    d.append(rL[0] - 1)
+    dL.append(rL[0] - 1)
 
     # Calcula a distância entre o fim da fita e o ponto, depois registra na lista
-    d.append(f - rL[0])
+    dL.append(f - rL[0])
 # Caso só existam mais de um ponto
 else:
 
@@ -52,32 +58,38 @@ else:
         if i == 0:
 
             # Calcula a distância entre o início da fita e o ponto, depois registra na lista
-            d.append(rL[i] - 1)
+            dL.append(rL[i] - 1)
         # Caso seja um ponto intermediário
         elif i != r - 1:
 
             # Calcula a distância entre o ponto anterior e o ponto atual, depois registra na lista
-            d.append(rL[i] - rL[i - 1] - 1)
+            dL.append(rL[i] - rL[i - 1] - 1)
         # Caso seja o último ponto
         else:
 
             # Calcula a distância entre o ponto anterior e o ponto atual, depois registra na lista
-            d.append(rL[i] - rL[i - 1] - 1)
+            dL.append(rL[i] - rL[i - 1] - 1)
 
             # Calcula a distância entre o fim da fita e o ponto, depois registra na lista
-            d.append(f - rL[i])
+            dL.append(f - rL[i])
 
-# Caso a maior distância seja entre uma das pontas da fita e o ponto
-if max(d) == d[0] or max(d) == d[-1]:
+# Loop para o cálculo do tempo
+for i in range(len(dL)):
 
-    # Calcula o resultado
-    res = max(d)
-# Caso a maior distância seja entre dois pontos
-else:
+    # Caso a distância seja entre um ponto e uma ponta da fita
+    if i == 0 or i == len(dL) - 1:
 
-    # Calcula o resultado, o número é sempre arredondado para cima com a função "ceil()". Assim condições de 
-    # divisões inexatas são consideradas
-    res = ceil(max(d) / 2)
+        # O tempo adicionado é a própria distância
+        t.append(dL[i])
+    # Caso a distância seja entre pontos
+    elif i != len(dL) - 1:
+
+        # O tempo adicionado é a metade da distância, a função "ceil()" é usada para arredondar para cima, corrigindo
+        # divisões inexadas
+        t.append(ceil(dL[i] / 2))
+
+# O número de dias resultante é o maior tempo demorado
+res = max(t)
 
 # Exibe o resultado
 print(res)
