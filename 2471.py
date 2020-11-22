@@ -7,7 +7,7 @@ n = int(input())
 lnSum = [0] * n
 colSum = [0] * n
 
-mat = [None] * n #Leio a matriz de entrada
+mat = [None] * n
 
 for i in range(n):
 
