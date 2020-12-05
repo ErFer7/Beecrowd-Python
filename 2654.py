@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+check_state = 0
+
 dp = {}
 de = {}
 dm = {}
@@ -14,14 +16,63 @@ for _ in range(n):
     de[ln[0]] = int(ln[2])
     dm[ln[0]] = int(ln[3])
 
-# Agrupar os enpatados
+while True:
 
-if list(dp.values()).count(max(list(dp.values()))) == 1:
+    keys = list(dp.keys())
 
-    print(list(dp.keys())[list(dp.values()).index(max(list(dp.values())))])
-elif list(de.values()).count(max(list(de.values()))) == 1:
+    dp_values = list(dp.values())
+    de_values = list(de.values())
+    dm_values = list(dm.values())
 
-    print(list(de.keys())[list(de.values()).index(max(list(de.values())))])
-else:
+    if check_state == 0:
 
-    print(list(dm.keys())[list(dm.values()).index(min(list(dm.values())))])
+        if dp_values.count(max(dp_values)) == 1:
+
+            print(keys[dp_values.index(max(dp_values))])
+            break
+        else:
+
+            for i in range(len(keys)):
+
+                if dp_values[i] != max(dp_values):
+
+                    del dp[keys[i]]
+                    del de[keys[i]]
+                    del dm[keys[i]]
+    
+    if check_state == 1:
+
+        if de_values.count(max(de_values)) == 1:
+
+            print(keys[de_values.index(max(de_values))])
+            break
+        else:
+
+            for i in range(len(keys)):
+
+                if de_values[i] != max(de_values):
+
+                    del dp[keys[i]]
+                    del de[keys[i]]
+                    del dm[keys[i]]
+
+    if check_state == 2:
+
+        if dm_values.count(min(dm_values)) == 1:
+
+            print(keys[dm_values.index(min(dm_values))])
+            break
+        else:
+            
+            print(min(filter(lambda s:isinstance(s, str), keys)))
+
+            # for i in range(len(keys)):
+
+            #     if dm_values[i] == min(dm_values):
+
+            #         print(keys[i])
+            #         break
+            
+            break
+
+    check_state += 1
