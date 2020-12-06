@@ -2,9 +2,11 @@
 
 check_state = 0
 
-dp = {}
-de = {}
-dm = {}
+d = {}
+
+p = []
+e = []
+m = []
 
 n = int(input())
 
@@ -12,67 +14,108 @@ for _ in range(n):
 
     ln = input().split()
 
-    dp[ln[0]] = int(ln[1])
-    de[ln[0]] = int(ln[2])
-    dm[ln[0]] = int(ln[3])
+    d[ln[0]] = (int(ln[1]), int(ln[2]), int(ln[3]))
+
+    p.append(int(ln[1]))
+    e.append(int(ln[2]))
+    m.append(int(ln[3]))
 
 while True:
 
-    keys = list(dp.keys())
-
-    dp_values = list(dp.values())
-    de_values = list(de.values())
-    dm_values = list(dm.values())
-
     if check_state == 0:
 
-        if dp_values.count(max(dp_values)) == 1:
+        if p.count(max(p)) == 1:
+            
+            for k in d:
 
-            print(keys[dp_values.index(max(dp_values))])
+                if d[k][0] == max(p):
+
+                    print(k)
+                    break
+            
             break
         else:
 
-            for i in range(len(keys)):
+            del_list = []
 
-                if dp_values[i] != max(dp_values):
+            for k in d:
 
-                    del dp[keys[i]]
-                    del de[keys[i]]
-                    del dm[keys[i]]
+                if d[k][0] != max(p):
+
+                    p.remove(d[k][0])
+                    e.remove(d[k][1])
+                    m.remove(d[k][2])
+
+                    del_list.append(k)
+            
+            for k in del_list:
+
+                del d[k]
     
     if check_state == 1:
 
-        if de_values.count(max(de_values)) == 1:
+        if e.count(max(e)) == 1:
 
-            print(keys[de_values.index(max(de_values))])
+            for k in d:
+
+                if d[k][1] == max(e):
+
+                    print(k)
+                    break
+            
             break
         else:
 
-            for i in range(len(keys)):
+            del_list = []
 
-                if de_values[i] != max(de_values):
+            for k in d:
 
-                    del dp[keys[i]]
-                    del de[keys[i]]
-                    del dm[keys[i]]
+                if d[k][1] != max(e):
+
+                    p.remove(d[k][0])
+                    e.remove(d[k][1])
+                    m.remove(d[k][2])
+
+                    del_list.append(k)
+            
+            for k in del_list:
+
+                del d[k]
 
     if check_state == 2:
 
-        if dm_values.count(min(dm_values)) == 1:
+        if m.count(min(m)) == 1:
 
-            print(keys[dm_values.index(min(dm_values))])
+            for k in d:
+
+                if d[k][2] == min(m):
+
+                    print(k)
+                    break
+            
             break
         else:
+
+            del_list = []
+
+            for k in d:
+
+                if d[k][2] != min(m):
+
+                    p.remove(d[k][0])
+                    e.remove(d[k][1])
+                    m.remove(d[k][2])
+
+                    del_list.append(k)
             
-            print(min(filter(lambda s:isinstance(s, str), keys)))
+            for k in del_list:
 
-            # for i in range(len(keys)):
-
-            #     if dm_values[i] == min(dm_values):
-
-            #         print(keys[i])
-            #         break
+                del d[k]
             
+            # Ordem lexicográfica é a mesma coisa que afabética nesse caso
+            keys = sorted(d.keys())
+            print(keys[0])
+
             break
 
     check_state += 1
