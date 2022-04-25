@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 
+'''
+Diferença
+'''
+
 a = int(input())
 b = int(input())
 c = int(input())
 d = int(input())
 
-print("DIFERENCA = %d" % (a * b - c * d))
+print(f"DIFERENCA = {a * b - c * d}")
