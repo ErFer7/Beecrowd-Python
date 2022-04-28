@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
-distance = int(input())
-fuelConsumed = float(input())
+'''
+Consumo
+'''
 
-print("%.3f km/l" % (distance / fuelConsumed))
+distance = int(input())
+fuel_consumed = float(input())
+
+print(f"{(distance / fuel_consumed):.3f} km/l")

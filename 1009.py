@@ -5,7 +5,7 @@ Salário com Bônus
 '''
 
 name = input()
-fixedSalary = float(input())
-selledProducts = float(input())
+fixed_salary = float(input())
+selled_products = float(input())
 
-print(f"TOTAL = R$ {(fixedSalary + (selledProducts * 0.15)):.2f}")
+print(f"TOTAL = R$ {(fixed_salary + (selled_products * 0.15)):.2f}")
