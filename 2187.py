@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+'''
+Bits Trocados
+'''
+
 test = 0
 
 while True:
@@ -22,6 +26,5 @@ while True:
 
     notes_1 = value
 
-    print("Teste %d" % test)
-    print("%d %d %d %d" % (notes_50, notes_10, notes_5, notes_1))
-    print("")
+    print(f"Teste {test}")
+    print(f"{notes_50} {notes_10} {notes_5} {notes_1}\n")

@@ -1,35 +1,39 @@
 # -*- coding: utf-8 -*-
 
+'''
+Leitura Ótica
+'''
+
 while True:
 
-    nC = int(input())
-    a = ["A", "B", "C", "D", "E"]
+    nQuestions = int(input())
+    choices = ["A", "B", "C", "D", "E"]
 
-    if nC == 0:
+    if nQuestions == 0:
         break
 
-    for i in range(nC):
+    for i in range(nQuestions):
 
         marked = -1
         valid = False
 
         nLst = list(map(int, input().split()))
 
-        for i in nLst:
+        for j in nLst:
 
-            if i <= 127:
+            if j <= 127:
 
                 if marked == -1:
 
-                    marked = nLst.index(i)
+                    marked = nLst.index(j)
                     valid = True
                 else:
 
                     valid = False
-        
+
         if valid:
 
-            print(a[marked])
+            print(choices[marked])
         else:
 
             print("*")

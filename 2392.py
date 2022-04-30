@@ -1,40 +1,41 @@
 # -*- coding: utf-8 -*-
 
-n, m = map(int, input().split())
+'''
+Pulo do Sapo
+'''
 
-r = [0] * n
+stones, frogs = map(int, input().split())
 
-for _ in range(m):
+river = [0] * stones
 
-    p, d = map(int, input().split())
-    
-    r[p - 1] = 1
+for _ in range(frogs):
 
-    nD = 0
+    initial_position, jump_distance = map(int, input().split())
+
+    river[initial_position - 1] = 1
+
+    nDistance = 0
 
     while True:
-        
-        nD += 1
 
-        if p + d * nD - 1 < n:
+        nDistance += 1
 
-            r[p + d * nD - 1] = 1
+        if initial_position + jump_distance * nDistance - 1 < stones:
+            river[initial_position + jump_distance * nDistance - 1] = 1
         else:
 
-            nD = 0
+            nDistance = 0
             break
-    
+
     while True:
 
-        nD += 1
+        nDistance += 1
 
-        if p - d * nD - 1 >= 0:
-
-            r[p - d * nD - 1] = 1
+        if initial_position - jump_distance * nDistance - 1 >= 0:
+            river[initial_position - jump_distance * nDistance - 1] = 1
         else:
-
             break
 
-for i in r:
+for i in river:
 
     print(i)

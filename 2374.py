@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
-targetPressure = int(input())
+'''
+Pneu
+'''
+
+targetTirePressure = int(input())
 tirePressure = int(input())
 
-print(targetPressure - tirePressure)
+print(targetTirePressure - tirePressure)
