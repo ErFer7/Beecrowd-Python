@@ -1,2 +1,5 @@
 .vscode
-stdin.txt
+input.txt
+output.txt
+testcheck.txt
+Run-Script.ps1
